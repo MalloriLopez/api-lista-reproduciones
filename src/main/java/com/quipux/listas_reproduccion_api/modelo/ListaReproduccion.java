@@ -1,4 +1,4 @@
-package com.quipux.listas_reproduccion_api.model;
+package com.quipux.listas_reproduccion_api.modelo;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
