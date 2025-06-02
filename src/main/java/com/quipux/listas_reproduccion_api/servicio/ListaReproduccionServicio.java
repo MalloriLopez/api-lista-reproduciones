@@ -9,5 +9,5 @@ public interface ListaReproduccionServicio {
     ListaReproduccion crearLista(ListaReproduccionDTO lista);
     List<ListaReproduccion> obtenerListas();
     ListaReproduccion obtenerListaPorNombre(String nombre);
-//    void eliminarLista(String nombre);
+    void eliminarListaPorNombre(String nombre);
 }

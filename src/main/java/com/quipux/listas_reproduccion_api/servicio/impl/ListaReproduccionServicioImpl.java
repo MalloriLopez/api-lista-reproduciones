@@ -7,6 +7,7 @@ import com.quipux.listas_reproduccion_api.modelo.Cancion;
 import com.quipux.listas_reproduccion_api.modelo.ListaReproduccion;
 import com.quipux.listas_reproduccion_api.repositorio.ListaReproduccionRepositorio;
 import com.quipux.listas_reproduccion_api.servicio.ListaReproduccionServicio;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -50,6 +51,15 @@ public class ListaReproduccionServicioImpl implements ListaReproduccionServicio 
     public ListaReproduccion obtenerListaPorNombre(String nombre) {
         return repositorio.findByNombre(nombre)
                 .orElseThrow(() -> new ExcepcionRecursoNoEncontrado("La lista de reproducción no existe."));
+    }
+
+    @Override
+    @Transactional
+    public void eliminarListaPorNombre(String nombre) {
+        if (!repositorio.existsByNombre(nombre)) {
+            throw new ExcepcionRecursoNoEncontrado("La lista de reproducción no existe.");
+        }
+        repositorio.deleteByNombre(nombre);
     }
 
 

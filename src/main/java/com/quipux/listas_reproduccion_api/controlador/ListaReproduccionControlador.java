@@ -33,5 +33,11 @@ public class ListaReproduccionControlador {
         ListaReproduccion lista = servicio.obtenerListaPorNombre(nombre);
         return ResponseEntity.ok(lista);
     }
+
+    @DeleteMapping("/{nombre}")
+    public ResponseEntity<Void> eliminarListaPorNombre(@PathVariable String nombre) {
+        servicio.eliminarListaPorNombre(nombre);
+        return ResponseEntity.noContent().build();
+    }
 }
 
