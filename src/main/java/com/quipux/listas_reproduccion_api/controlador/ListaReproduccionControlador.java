@@ -27,5 +27,11 @@ public class ListaReproduccionControlador {
     public List<ListaReproduccion> obtenerListas() {
         return servicio.obtenerListas();
     }
+
+    @GetMapping("/{nombre}")
+    public ResponseEntity<?> obtenerListaPorNombre(@PathVariable String nombre) {
+        ListaReproduccion lista = servicio.obtenerListaPorNombre(nombre);
+        return ResponseEntity.ok(lista);
+    }
 }
 

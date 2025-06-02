@@ -1,6 +1,7 @@
 package com.quipux.listas_reproduccion_api.servicio.impl;
 
 import com.quipux.listas_reproduccion_api.dto.ListaReproduccionDTO;
+import com.quipux.listas_reproduccion_api.global.ExcepcionRecursoNoEncontrado;
 import com.quipux.listas_reproduccion_api.global.ExcepcionSolicitudIncorrecta;
 import com.quipux.listas_reproduccion_api.modelo.Cancion;
 import com.quipux.listas_reproduccion_api.modelo.ListaReproduccion;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ListaReproduccionServicioImpl implements ListaReproduccionServicio {
 
-    private final ListaReproduccionRepositorio repository;
+    private final ListaReproduccionRepositorio repositorio;
 
     @Override
     public ListaReproduccion crearLista(ListaReproduccionDTO listaDTO) {
@@ -37,13 +38,20 @@ public class ListaReproduccionServicioImpl implements ListaReproduccionServicio 
                         .collect(Collectors.toList()))
                 .build();
 
-        return repository.save(lista);
+        return repositorio.save(lista);
     }
 
     @Override
     public List<ListaReproduccion> obtenerListas() {
-        return repository.findAll();
+        return repositorio.findAll();
     }
 
-}
+    @Override
+    public ListaReproduccion obtenerListaPorNombre(String nombre) {
+        return repositorio.findByNombre(nombre)
+                .orElseThrow(() -> new ExcepcionRecursoNoEncontrado("La lista de reproducción no existe."));
+    }
+
+
+    }
 
