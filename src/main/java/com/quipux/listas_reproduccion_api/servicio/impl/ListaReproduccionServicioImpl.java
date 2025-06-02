@@ -9,6 +9,7 @@ import com.quipux.listas_reproduccion_api.servicio.ListaReproduccionServicio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,6 +38,11 @@ public class ListaReproduccionServicioImpl implements ListaReproduccionServicio 
                 .build();
 
         return repository.save(lista);
+    }
+
+    @Override
+    public List<ListaReproduccion> obtenerListas() {
+        return repository.findAll();
     }
 
 }

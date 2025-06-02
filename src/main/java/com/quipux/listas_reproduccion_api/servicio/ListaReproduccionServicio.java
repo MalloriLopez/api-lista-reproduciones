@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ListaReproduccionServicio {
     ListaReproduccion crearLista(ListaReproduccionDTO lista);
-//    List<ListaReproduccion> obtenerListas();
+    List<ListaReproduccion> obtenerListas();
 //    ListaReproduccion obtenerListaPorNombre(String nombre);
 //    void eliminarLista(String nombre);
 }
